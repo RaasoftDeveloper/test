@@ -1851,7 +1851,7 @@ public class frmMain : Form
 
 	private void ParseMBUSData(string _ReceivedData, int MODELID, int SlaveID, int NoofTags, DateTime LogTime, string DeviceId)
 	{
-       // GlobalDeclaration.StringLogger("Recieved Data = " + _ReceivedData.ToString(), "Mod_Bus", "ParseMbus", GlobalDeclaration.strLogPath);
+       GlobalDeclaration.StringLogger("Recieved Data = " + _ReceivedData.ToString(), "Mod_Bus", "ParseMbus", GlobalDeclaration.strLogPath);
 
         try
         {
