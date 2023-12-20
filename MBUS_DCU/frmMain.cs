@@ -1851,7 +1851,8 @@ public class frmMain : Form
 
 	private void ParseMBUSData(string _ReceivedData, int MODELID, int SlaveID, int NoofTags, DateTime LogTime, string DeviceId)
 	{
-       GlobalDeclaration.StringLogger("Recieved Data = " + _ReceivedData.ToString(), "Mod_Bus", "ParseMbus", GlobalDeclaration.strLogPath);
+        GlobalDeclaration.StringLogger("release 7 ", "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
+        GlobalDeclaration.StringLogger("Recieved Data = " + _ReceivedData.ToString(), "Mod_Bus", "ParseMbus", GlobalDeclaration.strLogPath);
 
         try
         {
@@ -1883,10 +1884,11 @@ public class frmMain : Form
 			int num6 = 0;
 			if (_ReceivedData.Length <= 4)
 			{
-				return;
+                GlobalDeclaration.StringLogger("returned from if (_ReceivedData.Length <= 4) ", "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
+                return;
 			}
 			_ReceivedData = _ReceivedData.Replace(" ", string.Empty);
-          //  GlobalDeclaration.StringLogger("Recieved Data After Replace = " + _ReceivedData.ToString(), "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
+          GlobalDeclaration.StringLogger("Recieved Data After Replace = " + _ReceivedData.ToString(), "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
 
             if (GlobalDeclaration._PollingID == 1 && _ReceivedData.Substring(0, 2) == "10")
 			{
@@ -1946,8 +1948,11 @@ public class frmMain : Form
 			SqlCommand sqlCommand = new SqlCommand("Select * from SETTINGS_AssignParameters Where Modelid = " + MODELID + " Order by [ParameterID]", GlobalDeclaration._ASIMBUSSETTINGSCnx);
 			dataTable.Clear();
 			dataTable.Load(sqlCommand.ExecuteReader());
-			do
+            GlobalDeclaration.StringLogger("No of Tags: " + NoofTags, "frmMain", "SaveData", GlobalDeclaration.strLogPath);
+            do
 			{
+				 GlobalDeclaration.StringLogger("inside do num 3 is : "+num3, "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
+
 				IL_0328:
 				num5 += num6;
 				num6 = 2;
@@ -1958,7 +1963,9 @@ public class frmMain : Form
 				string text10 = CalulateFunctionField(text8.Substring(2, 2));
 				string text11 = text8.Substring(2, 1);
 				string text12 = FindVIForDIFE(text8.Substring(0, 1));
-				if (text12 == "DIFE")
+
+                GlobalDeclaration.StringLogger("checking condition text12==DIFE", "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
+                if (text12 == "DIFE")
 				{
 					DIFE1.Clear();
 					DIFE2.Clear();
@@ -1972,27 +1979,34 @@ public class frmMain : Form
 					DIFE10.Clear();
 					for (int j = 0; j <= 9; j++)
 					{
-						num5 += num6;
+                        GlobalDeclaration.StringLogger("executing J for Loop. ", "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
+                        num5 += num6;
 						num6 = 2;
 						string dIFE = HextoBinary(_ReceivedData.Substring(num5, num6), 8);
 						dIFE = ReadDIFETable(dIFE, j);
 						if (dIFE == "0")
 						{
-							break;
+                           // GlobalDeclaration.StringLogger("returned by break  if (dIFE == \"0\")", "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
+                            break;
 						}
 					}
 				}
 				num5 += num6;
 				num6 = 2;
-				if (num5 >= num7 * 2)
+                GlobalDeclaration.StringLogger("checking condition num5>num7*2", "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
+                if (num5 >= num7 * 2)
 				{
 					SaveData(SlaveID, 1, LogTime);
-					return;
+
+
+                    GlobalDeclaration.StringLogger("returned from if (num5 >= num7 * 2)  ", "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
+                    return;
 				}
 				string text13 = HextoBinary(_ReceivedData.Substring(num5, num6), 8);
 				string text14 = ReadVIFTable(text13.Substring(1));
 				VIFE1.Clear();
-				if (text13.Substring(0, 1) == "1")
+                GlobalDeclaration.StringLogger("checking condition text13.substring", "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
+                if (text13.Substring(0, 1) == "1")
 				{
 					for (int k = 0; k <= 9; k++)
 					{
@@ -2004,23 +2018,30 @@ public class frmMain : Form
 						{
 						}
 						if (vIFE == "0")
-						{
-							break;
+                        {
+                          //  GlobalDeclaration.StringLogger("returned by break  if (vIFE == \"0\")", "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
+
+                            break;
 						}
 					}
 				}
-				if (VIFE1.Contains("Data Over Flow") || VIFE1.Contains("Data Under Flow") || VIFE1.Contains("Data Error"))
+                GlobalDeclaration.StringLogger("checking condition Vife1 Contains ", "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
+                if (VIFE1.Contains("Data Over Flow") || VIFE1.Contains("Data Under Flow") || VIFE1.Contains("Data Error"))
 				{
 					SaveData(SlaveID, 1, LogTime);
-					return;
+
+                    GlobalDeclaration.StringLogger("returned from if  (VIFE1.Contains(\"Data Over Flow\") || VIFE1.Contains(\"Data Under Flow\") || VIFE1.Contains(\"Data Error\")) ", "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
+                    return;
 				}
 				num2 = Convert.ToInt32(dataTable.Rows[num3]["ParameterIndex"].ToString());
+
                 GlobalDeclaration.StringLogger("num 2 value : "+num2.ToString(), "frmMain", "SaveData", GlobalDeclaration.strLogPath);
                 num4 = Convert.ToSingle(dataTable.Rows[num3]["MF"].ToString());
                 GlobalDeclaration.StringLogger("num 3 value : " + num3.ToString(), "frmMain", "SaveData", GlobalDeclaration.strLogPath);
                 string[] array = text9.Split('/');
 				int num12 = Convert.ToInt32(array[0]);
-				if (num2 != 0)
+                GlobalDeclaration.StringLogger("checking condition num2!= 0 ", "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
+                if (num2 != 0)
 				{
 					string text15 = array[1].ToString();
 					num5 += num6;
@@ -2031,9 +2052,11 @@ public class frmMain : Form
 						if (NoofTags == num3)
 						{
 							SaveData(SlaveID, 1, LogTime);
-							return;
+                            GlobalDeclaration.StringLogger("returned from if (nooftags==num3) ", "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
+                            return;
 						}
-						goto IL_0328;
+                        GlobalDeclaration.StringLogger("num3 : "+ num3, "Mod_Bus", "gotoIL_0328-1", GlobalDeclaration.strLogPath);
+                        goto IL_0328;
 					}
 					string[] array2 = text14.Split(' ');
 					if (array2.Length <= 1)
@@ -2042,9 +2065,11 @@ public class frmMain : Form
 						if (NoofTags == num3)
 						{
 							SaveData(SlaveID, 1, LogTime);
-							return;
+                            GlobalDeclaration.StringLogger("returned from if (Nooftags==num3) ", "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
+                            return;
 						}
-						goto IL_0328;
+                        GlobalDeclaration.StringLogger("num 3 : " + num3 , "Mod_Bus", "gotoIL0328-2", GlobalDeclaration.strLogPath);
+                        goto IL_0328;
 					}
 					string text16 = array2[0].ToString();
 					string text17 = array2[1].ToString();
@@ -2067,7 +2092,7 @@ public class frmMain : Form
 							num13 = 0f;
 						}
 						RealTimeData[SlaveID, num2] = Convert.ToSingle(num13 * num4);
-                        GlobalDeclaration.StringLogger("Real time value inside BCD : " + RealTimeData[SlaveID, num2].ToString(), "frmMain", "SaveData", GlobalDeclaration.strLogPath);
+                        GlobalDeclaration.StringLogger($"Real time value inside BCD slave id = {SlaveID} ,num2 = {num2}, MF ={num4} : " + RealTimeData[SlaveID, num2].ToString(), "frmMain", "ParseMbus", GlobalDeclaration.strLogPath);
 
                         text7 = text7 + "Value " + num13 + ", Unit " + text16 + ", Description " + text17 + "\n";
 					}
@@ -2080,7 +2105,7 @@ public class frmMain : Form
 							num14 = int.Parse(s2, NumberStyles.HexNumber);
 
 							RealTimeData[SlaveID, num2] = Convert.ToSingle((float)num14 * num4);
-                            GlobalDeclaration.StringLogger("Real time value inside Integer : " + RealTimeData[SlaveID, num2].ToString(), "frmMain", "SaveData", GlobalDeclaration.strLogPath);
+                            GlobalDeclaration.StringLogger($"Real time value inside Integer slave id = {SlaveID} ,num2 = {num2}, MF = {num4} : " + RealTimeData[SlaveID, num2].ToString(), "frmMain", "ParseMbus", GlobalDeclaration.strLogPath);
                             text7 = text7 + "Value " + num14 + ", Unit " + text16 + ", Description " + text17 + "\n";
 
 						}
@@ -2090,8 +2115,9 @@ public class frmMain : Form
 							string text19 = LittleEndian(_ReceivedData.Substring(num5, num6));
 							num15 = ((!(text19.Substring(0, 1) == "F")) ? ((float)long.Parse(text19, NumberStyles.HexNumber)) : ((float)FromHex(text19.Substring(1).ToString())));
 							RealTimeData[SlaveID, num2] = Convert.ToSingle(num15 * num4);
-                            GlobalDeclaration.StringLogger("Real time value inside else : " + RealTimeData[SlaveID, num2].ToString(), "frmMain", "SaveData", GlobalDeclaration.strLogPath);
+                            GlobalDeclaration.StringLogger($"Real time value inside else slave id = {SlaveID} ,num2 = {num2} , MF = {num4} : " + RealTimeData[SlaveID, num2].ToString(), "frmMain", "SaveData", GlobalDeclaration.strLogPath);
                             text7 = text7 + "Value " + num15 + ", Unit " + text16 + ", Description " + text17 + "\n";
+						
 						}
 					}
 				}
@@ -2100,10 +2126,16 @@ public class frmMain : Form
 					num5 += num6;
 					num6 = num12;
 				}
-				num3++;
-			}
+                GlobalDeclaration.StringLogger($"completed do-while for : {num3 } ", "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
+                num3++;
+                GlobalDeclaration.StringLogger("num3 is : "+num3, "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
+               
+            }
 			while (NoofTags != num3);
-			SaveData(SlaveID, 1, LogTime);
+
+            GlobalDeclaration.StringLogger(" text 7 value =   " + text7, "frmMain", "ParseMbus", GlobalDeclaration.strLogPath);
+
+            SaveData(SlaveID, 1, LogTime);
 		}
 		catch (Exception ex2)
 		{
