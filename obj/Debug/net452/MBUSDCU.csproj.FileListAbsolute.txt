@@ -1,0 +1,15 @@
+D:\DCU\bin\Debug\net452\MBUSDCU.exe.config
+D:\DCU\bin\Debug\net452\MBUSDCU.exe
+D:\DCU\bin\Debug\net452\MBUSDCU.pdb
+D:\DCU\bin\Debug\net452\Modbus.dll
+D:\DCU\bin\Debug\net452\SharedMemory.dll
+D:\DCU\obj\Debug\net452\MBUSDCU.csproj.AssemblyReference.cache
+D:\DCU\obj\Debug\net452\MBUS_DCU.frmMain.resources
+D:\DCU\obj\Debug\net452\MBUS_DCU.Properties.Resources.resources
+D:\DCU\obj\Debug\net452\MBUSDCU.csproj.GenerateResource.cache
+D:\DCU\obj\Debug\net452\MBUSDCU.GeneratedMSBuildEditorConfig.editorconfig
+D:\DCU\obj\Debug\net452\MBUSDCU.csproj.CoreCompileInputs.cache
+D:\DCU\obj\Debug\net452\MBUSDCU.sourcelink.json
+D:\DCU\obj\Debug\net452\MBUSDCU.csproj.CopyComplete
+D:\DCU\obj\Debug\net452\MBUSDCU.exe
+D:\DCU\obj\Debug\net452\MBUSDCU.pdb

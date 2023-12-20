@@ -1,0 +1,8 @@
+12/20/23 11:10:24 AM: MBUS DCU SetSerialPort: Error in :COM4: The semaphore timeout period has expired.
+
+12/20/23 12:40:12 PM: MBUS DCU SetSerialPort: Error in :COM4: The semaphore timeout period has expired.
+
+12/20/23 2:48:44 PM: MBUS DCU SetSerialPort: Error in :COM4: The semaphore timeout period has expired.
+
+12/20/23 3:13:04 PM: MBUS DCU SetSerialPort: Error in :COM4: The semaphore timeout period has expired.
+
