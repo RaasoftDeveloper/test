@@ -2045,7 +2045,7 @@ public class frmMain : Form
                 GlobalDeclaration.StringLogger("num 3 value : " + num3.ToString(), "frmMain", "SaveData", GlobalDeclaration.strLogPath);
                 string[] array = text9.Split('/');
 				int num12 = Convert.ToInt32(array[0]);
-                GlobalDeclaration.StringLogger("checking condition num2!= 0 ", "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
+                GlobalDeclaration.StringLogger("checking condition num2 != 0 ", "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
                 if (num2 != 0)
 				{
 					string text15 = array[1].ToString();
@@ -2144,7 +2144,7 @@ public class frmMain : Form
 		}
 		catch (Exception ex2)
 		{
-			if (ex2.Message.Contains("Index and length must refer"))
+			if (ex2.Message.Contains("Index and length must refer."))
 			{
 				SaveData(SlaveID, 1, LogTime);
 			}
