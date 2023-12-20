@@ -1851,7 +1851,7 @@ public class frmMain : Form
 
 	private void ParseMBUSData(string _ReceivedData, int MODELID, int SlaveID, int NoofTags, DateTime LogTime, string DeviceId)
 	{
-        GlobalDeclaration.StringLogger("release 7 ", "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
+        GlobalDeclaration.StringLogger("release 8 ", "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
         GlobalDeclaration.StringLogger("Recieved Data = " + _ReceivedData.ToString(), "Mod_Bus", "ParseMbus", GlobalDeclaration.strLogPath);
 
         try
@@ -2025,6 +2025,11 @@ public class frmMain : Form
 						}
 					}
 				}
+				foreach(var item in VIFE1)
+				{
+                    GlobalDeclaration.StringLogger("VIFE1 Value " + item, "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
+                }
+				
                 GlobalDeclaration.StringLogger("checking condition Vife1 Contains ", "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
                 if (VIFE1.Contains("Data Over Flow") || VIFE1.Contains("Data Under Flow") || VIFE1.Contains("Data Error"))
 				{
