@@ -120,8 +120,7 @@ public class frmMain : Form
 	private ToolStripMenuItem tsStart;
 
 	private ToolStripMenuItem tsExit;
-
-	private ToolTip toolTip1;
+    private ToolTip toolTip1;
 
 	public frmMain()
 	{
@@ -665,7 +664,8 @@ public class frmMain : Form
 						byte[] data3 = Telegram_Convert(GlobalDeclaration.MeterDetails[index].MBUSID, TypeId, GlobalDeclaration.Telegram[ModelId, 2], "Serial", Control);
 						(MBUSSerialPorts[TypeId] as SerialPort).Write(data3, 0, data3.Length);
 						await Task.Delay(2000);
-						ParseMBUSData(rxBuff[TypeId], GlobalDeclaration.MeterDetails[index].MModelId, MeterId, GlobalDeclaration.MeterDetails[index].TagsCount, LogTime, DeviceId);
+                        GlobalDeclaration.StringLogger("PArserMbus Called at 669", "MBUS", "Single_TCP", GlobalDeclaration.strLogPath);
+                        ParseMBUSData(rxBuff[TypeId], GlobalDeclaration.MeterDetails[index].MModelId, MeterId, GlobalDeclaration.MeterDetails[index].TagsCount, LogTime, DeviceId);
 						if (ReadType != "OPCL")
 						{
 							DCUstorage.WriteData((DCU)1, "Meter Read Successully");
@@ -689,7 +689,8 @@ public class frmMain : Form
 				byte[] data2 = SerialTelegramPrimaryID(GlobalDeclaration.MeterDetails[index].MBUSID, TypeId, "Serial");
 				(MBUSSerialPorts[TypeId] as SerialPort).Write(data2, 0, data2.Length);
 				await Task.Delay(2000);
-				ParseMBUSData(rxBuff[TypeId], GlobalDeclaration.MeterDetails[index].MModelId, MeterId, GlobalDeclaration.MeterDetails[index].TagsCount, LogTime, DeviceId);
+                GlobalDeclaration.StringLogger("PArserMbus Called at 694", "MBUS", "Single_TCP", GlobalDeclaration.strLogPath);
+                ParseMBUSData(rxBuff[TypeId], GlobalDeclaration.MeterDetails[index].MModelId, MeterId, GlobalDeclaration.MeterDetails[index].TagsCount, LogTime, DeviceId);
 			}
 		}
 		catch (Exception ex2)
@@ -818,7 +819,8 @@ public class frmMain : Form
 							stm.Write(Writedatabyte4, 0, Writedatabyte4.Length);
 							await Task.Delay(2000);
 							stm.Read(ReadDataByte, 0, 255);
-							ParseMBUSData(ByteArrayToHexString(ReadDataByte), GlobalDeclaration.MeterDetails[index].MModelId, MeterId, GlobalDeclaration.MeterDetails[index].TagsCount, Logtime, DeviceId);
+                            GlobalDeclaration.StringLogger("PArserMbus Called at 824", "MBUS", "Single_TCP", GlobalDeclaration.strLogPath);
+                            ParseMBUSData(ByteArrayToHexString(ReadDataByte), GlobalDeclaration.MeterDetails[index].MModelId, MeterId, GlobalDeclaration.MeterDetails[index].TagsCount, Logtime, DeviceId);
 							if (GlobalDeclaration.ISRepeatPoll)
 							{
 								DeleteRepeatPolling(MeterId);
@@ -862,7 +864,8 @@ public class frmMain : Form
 				stm.Write(Writedatabyte5, 0, Writedatabyte5.Length);
 				await Task.Delay(2000);
 				stm.Read(ReadDataByte2, 0, 255);
-				ParseMBUSData(ByteArrayToHexString(ReadDataByte2), GlobalDeclaration.MeterDetails[index].MModelId, MeterId, GlobalDeclaration.MeterDetails[index].TagsCount, Logtime, DeviceId);
+                GlobalDeclaration.StringLogger("PArserMbus Called at 868", "MBUS", "Single_TCP", GlobalDeclaration.strLogPath);
+                ParseMBUSData(ByteArrayToHexString(ReadDataByte2), GlobalDeclaration.MeterDetails[index].MModelId, MeterId, GlobalDeclaration.MeterDetails[index].TagsCount, Logtime, DeviceId);
 			}
 		}
 		catch (Exception ex2)
@@ -1219,7 +1222,8 @@ public class frmMain : Form
 							await Task.Delay(2000);
 							if (rxBuff[SerialPortID].Length > 4)
 							{
-								ParseMBUSData(rxBuff[SerialPortID], GlobalDeclaration.MeterDetails[j].MModelId, GlobalDeclaration.MeterDetails[j].MeterId, GlobalDeclaration.MeterDetails[j].TagsCount, Logtime, DeviceId);
+                                GlobalDeclaration.StringLogger("PArserMbus Called at 1226", "MBUS", "Single_TCP", GlobalDeclaration.strLogPath);
+                                ParseMBUSData(rxBuff[SerialPortID], GlobalDeclaration.MeterDetails[j].MModelId, GlobalDeclaration.MeterDetails[j].MeterId, GlobalDeclaration.MeterDetails[j].TagsCount, Logtime, DeviceId);
 							}
 							else
 							{
@@ -1246,7 +1250,8 @@ public class frmMain : Form
 						byte[] data3 = SerialTelegramPrimaryID(GlobalDeclaration.MeterDetails[j].MBUSID, SerialPortID, "Serial");
 						(MBUSSerialPorts[SerialPortID] as SerialPort).Write(data3, 0, data3.Length);
 						await Task.Delay(2000);
-						ParseMBUSData(rxBuff[SerialPortID], GlobalDeclaration.MeterDetails[j].MModelId, GlobalDeclaration.MeterDetails[j].MeterId, GlobalDeclaration.MeterDetails[j].TagsCount, Logtime, DeviceId);
+                        GlobalDeclaration.StringLogger("PArserMbus Called at 1255", "MBUS", "Single_TCP", GlobalDeclaration.strLogPath);
+                        ParseMBUSData(rxBuff[SerialPortID], GlobalDeclaration.MeterDetails[j].MModelId, GlobalDeclaration.MeterDetails[j].MeterId, GlobalDeclaration.MeterDetails[j].TagsCount, Logtime, DeviceId);
 					}
 					if (ValveId != 0)
 					{
@@ -1388,7 +1393,8 @@ public class frmMain : Form
 								string DataReceived = ByteArrayToHexString(ReadDataByte);
 								if (DataReceived.Length > 4)
 								{
-									ParseMBUSData(DataReceived, GlobalDeclaration.MeterDetails[i].MModelId, MeterId, GlobalDeclaration.MeterDetails[i].TagsCount, LogTime, DeviceId);
+                                    GlobalDeclaration.StringLogger("PArserMbus Called at 1397", "MBUS", "Single_TCP", GlobalDeclaration.strLogPath);
+                                    ParseMBUSData(DataReceived, GlobalDeclaration.MeterDetails[i].MModelId, MeterId, GlobalDeclaration.MeterDetails[i].TagsCount, LogTime, DeviceId);
 									goto IL_0e3f;
 								}
 								if (RTry == 0)
@@ -1440,7 +1446,8 @@ public class frmMain : Form
 						stm.Write(Writedatabyte4, 0, Writedatabyte4.Length);
 						await Task.Delay(2000);
 						stm.Read(ReadDataByte2, 0, 255);
-						ParseMBUSData(ByteArrayToHexString(ReadDataByte2), GlobalDeclaration.MeterDetails[i].MModelId, GlobalDeclaration.MeterDetails[i].MeterId, GlobalDeclaration.MeterDetails[i].TagsCount, LogTime, DeviceId);
+                        GlobalDeclaration.StringLogger("PArserMbus Called at 1451", "MBUS", "Single_TCP", GlobalDeclaration.strLogPath);
+                        ParseMBUSData(ByteArrayToHexString(ReadDataByte2), GlobalDeclaration.MeterDetails[i].MModelId, GlobalDeclaration.MeterDetails[i].MeterId, GlobalDeclaration.MeterDetails[i].TagsCount, LogTime, DeviceId);
 					}
 					goto IL_0e3f;
 					IL_0e3f:
@@ -1851,7 +1858,7 @@ public class frmMain : Form
 
 	private void ParseMBUSData(string _ReceivedData, int MODELID, int SlaveID, int NoofTags, DateTime LogTime, string DeviceId)
 	{
-        GlobalDeclaration.StringLogger("release 8 ", "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
+        GlobalDeclaration.StringLogger("release 13 ", "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
         GlobalDeclaration.StringLogger("Recieved Data = " + _ReceivedData.ToString(), "Mod_Bus", "ParseMbus", GlobalDeclaration.strLogPath);
 
         try
@@ -1958,12 +1965,16 @@ public class frmMain : Form
 				num6 = 2;
 				string s = _ReceivedData.Substring(num5, num6);
 				string text8 = HextoBinary(s, 8);
+
 				string binaryValue = HextoBinary(s, 4);
 				string text9 = CalulateDataField(binaryValue);
-				string text10 = CalulateFunctionField(text8.Substring(2, 2));
-				string text11 = text8.Substring(2, 1);
-				string text12 = FindVIForDIFE(text8.Substring(0, 1));
 
+				string text10 = CalulateFunctionField(text8.Substring(2, 2));
+
+				string text11 = text8.Substring(2, 1);
+
+				string text12 = FindVIForDIFE(text8.Substring(0, 1));
+                GlobalDeclaration.StringLogger($"text 8 : {text8}\n text 9 : {text9} \n text 10 : {text10} \n text 11 : {text11} \n text 12 : {text12}", "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
                 GlobalDeclaration.StringLogger("checking condition text12==DIFE", "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
                 if (text12 == "DIFE")
 				{
@@ -2004,7 +2015,8 @@ public class frmMain : Form
 				}
 				string text13 = HextoBinary(_ReceivedData.Substring(num5, num6), 8);
 				string text14 = ReadVIFTable(text13.Substring(1));
-				VIFE1.Clear();
+                GlobalDeclaration.StringLogger($"text 13 : {text13}\n text 14 : {text14} ", "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
+                VIFE1.Clear();
                 GlobalDeclaration.StringLogger("checking condition text13.substring", "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
                 if (text13.Substring(0, 1) == "1")
 				{
@@ -2013,7 +2025,8 @@ public class frmMain : Form
 						num5 += num6;
 						num6 = 2;
 						string vIFE = HextoBinary(_ReceivedData.Substring(num5, num6), 8);
-						vIFE = ReadVIFETable(vIFE, k);
+                        GlobalDeclaration.StringLogger($"string vife value in k loop {vIFE} k value {k} ", "Mod_Bus", "ParseMBUS", GlobalDeclaration.strLogPath);
+                        vIFE = ReadVIFETable(vIFE, k);
 						if (Error != "")
 						{
 						}
@@ -2078,11 +2091,13 @@ public class frmMain : Form
 					}
 					string text16 = array2[0].ToString();
 					string text17 = array2[1].ToString();
-					if (text15 == "BCD")
+                    GlobalDeclaration.StringLogger($"text 15 {text15} text 16 {text16} text17 {text17}","Mbus", "ParseMBUS", GlobalDeclaration.strLogPath);
+                    if (text15 == "BCD")
 					{
 						float num13 = 0f;
 						string text18 = HextoBCD(_ReceivedData.Substring(num5, num6));
-						if (text18.Substring(0, 1) == "F")
+                        GlobalDeclaration.StringLogger($"text 18 {text18} ", "Mbus", "ParseMBUS", GlobalDeclaration.strLogPath);
+                        if (text18.Substring(0, 1) == "F")
 						{
 							text18 = "-" + text18.Substring(1).ToString();
 						}
@@ -2107,10 +2122,11 @@ public class frmMain : Form
 						{
 							int num14 = 0;
 							string s2 = LittleEndian(_ReceivedData.Substring(num5, num6));
+
 							num14 = int.Parse(s2, NumberStyles.HexNumber);
 
 							RealTimeData[SlaveID, num2] = Convert.ToSingle((float)num14 * num4);
-                            GlobalDeclaration.StringLogger($"Real time value inside Integer slave id = {SlaveID} ,num2 = {num2}, MF = {num4} : " + RealTimeData[SlaveID, num2].ToString(), "frmMain", "ParseMbus", GlobalDeclaration.strLogPath);
+                            GlobalDeclaration.StringLogger($"Real time value inside Integer slave id = {SlaveID} ,num2 = {num2}, MF = {num4}, S2 = {s2} : " + RealTimeData[SlaveID, num2].ToString(), "frmMain", "ParseMbus", GlobalDeclaration.strLogPath);
                             text7 = text7 + "Value " + num14 + ", Unit " + text16 + ", Description " + text17 + "\n";
 
 						}
@@ -2120,7 +2136,7 @@ public class frmMain : Form
 							string text19 = LittleEndian(_ReceivedData.Substring(num5, num6));
 							num15 = ((!(text19.Substring(0, 1) == "F")) ? ((float)long.Parse(text19, NumberStyles.HexNumber)) : ((float)FromHex(text19.Substring(1).ToString())));
 							RealTimeData[SlaveID, num2] = Convert.ToSingle(num15 * num4);
-                            GlobalDeclaration.StringLogger($"Real time value inside else slave id = {SlaveID} ,num2 = {num2} , MF = {num4} : " + RealTimeData[SlaveID, num2].ToString(), "frmMain", "SaveData", GlobalDeclaration.strLogPath);
+                            GlobalDeclaration.StringLogger($"Real time value inside else slave id = {SlaveID} ,num2 = {num2} , MF = {num4}, text 19 = {text19} : " + RealTimeData[SlaveID, num2].ToString(), "frmMain", "SaveData", GlobalDeclaration.strLogPath);
                             text7 = text7 + "Value " + num15 + ", Unit " + text16 + ", Description " + text17 + "\n";
 						
 						}
@@ -3726,54 +3742,73 @@ public class frmMain : Form
 
 	private void InitializeComponent()
 	{
-		this.components = new System.ComponentModel.Container();
-		System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MBUS_DCU.frmMain));
-		this.nfi = new System.Windows.Forms.NotifyIcon(this.components);
-		this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-		this.tsStop = new System.Windows.Forms.ToolStripMenuItem();
-		this.tsStart = new System.Windows.Forms.ToolStripMenuItem();
-		this.tsExit = new System.Windows.Forms.ToolStripMenuItem();
-		this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-		this.contextMenuStrip1.SuspendLayout();
-		base.SuspendLayout();
-		this.nfi.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-		this.nfi.ContextMenuStrip = this.contextMenuStrip1;
-		this.nfi.Icon = (System.Drawing.Icon)resources.GetObject("nfi.Icon");
-		this.nfi.Text = "SMART - MBUS POLL";
-		this.nfi.Visible = true;
-		this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[3] { this.tsStop, this.tsStart, this.tsExit });
-		this.contextMenuStrip1.Name = "contextMenuStrip1";
-		this.contextMenuStrip1.Size = new System.Drawing.Size(181, 92);
-		this.tsStop.Image = (System.Drawing.Image)resources.GetObject("tsStop.Image");
-		this.tsStop.Name = "tsStop";
-		this.tsStop.Size = new System.Drawing.Size(180, 22);
-		this.tsStop.Text = "St&op Polling";
-		this.tsStop.Click += new System.EventHandler(stopPollingToolStripMenuItem_Click);
-		this.tsStart.Image = (System.Drawing.Image)resources.GetObject("tsStart.Image");
-		this.tsStart.Name = "tsStart";
-		this.tsStart.Size = new System.Drawing.Size(180, 22);
-		this.tsStart.Text = "St&art Polling";
-		this.tsStart.Click += new System.EventHandler(tsStart_Click);
-		this.tsExit.Image = (System.Drawing.Image)resources.GetObject("tsExit.Image");
-		this.tsExit.Name = "tsExit";
-		this.tsExit.Size = new System.Drawing.Size(180, 22);
-		this.tsExit.Text = "E&xit";
-		this.tsExit.Visible = false;
-		this.tsExit.Click += new System.EventHandler(tsExit_Click);
-		base.AutoScaleDimensions = new System.Drawing.SizeF(6f, 13f);
-		base.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-		base.ClientSize = new System.Drawing.Size(256, 61);
-		this.Font = new System.Drawing.Font("Segoe UI", 8.25f, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-		base.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-		base.MaximizeBox = false;
-		base.MinimizeBox = false;
-		base.Name = "frmMain";
-		base.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-		this.Text = "DCU";
-		base.MinimumSizeChanged += new System.EventHandler(frmMain_MinimumSizeChanged);
-		base.Activated += new System.EventHandler(frmMain_Activated);
-		base.Load += new System.EventHandler(Form1_Load);
-		this.contextMenuStrip1.ResumeLayout(false);
-		base.ResumeLayout(false);
+            this.components = new System.ComponentModel.Container();
+            this.nfi = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsStop = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsStart = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.contextMenuStrip1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // nfi
+            // 
+            this.nfi.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.nfi.ContextMenuStrip = this.contextMenuStrip1;
+            this.nfi.Text = "SMART - MBUS POLL";
+            this.nfi.Visible = true;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsStop,
+            this.tsStart,
+            this.tsExit});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(139, 70);
+            // 
+            // tsStop
+            // 
+            this.tsStop.Name = "tsStop";
+            this.tsStop.Size = new System.Drawing.Size(138, 22);
+            this.tsStop.Text = "St&op Polling";
+            this.tsStop.Click += new System.EventHandler(this.stopPollingToolStripMenuItem_Click);
+            // 
+            // tsStart
+            // 
+            this.tsStart.Name = "tsStart";
+            this.tsStart.Size = new System.Drawing.Size(138, 22);
+            this.tsStart.Text = "St&art Polling";
+            this.tsStart.Click += new System.EventHandler(this.tsStart_Click);
+            // 
+            // tsExit
+            // 
+            this.tsExit.Name = "tsExit";
+            this.tsExit.Size = new System.Drawing.Size(138, 22);
+            this.tsExit.Text = "E&xit";
+            this.tsExit.Visible = false;
+            this.tsExit.Click += new System.EventHandler(this.tsExit_Click);
+            // 
+            // frmMain
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(256, 61);
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "frmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "DCU";
+            this.MinimumSizeChanged += new System.EventHandler(this.frmMain_MinimumSizeChanged);
+            this.Activated += new System.EventHandler(this.frmMain_Activated);
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.contextMenuStrip1.ResumeLayout(false);
+            this.ResumeLayout(false);
+
 	}
+
+   
 }
