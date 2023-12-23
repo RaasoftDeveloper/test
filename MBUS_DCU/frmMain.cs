@@ -18,9 +18,7 @@ using System.Web.Script.Serialization;
 using System.Windows.Forms;
 using MBUS_DCU.Properties;
 using SharedMemory;
-using Valley.Net.Protocols.MeterBus;
-using Valley.Net.Protocols.MeterBus.EN13757_2;
-using Valley.Net.Protocols.MeterBus.EN13757_3;
+
 
 
 namespace MBUS_DCU;
@@ -234,13 +232,6 @@ public class frmMain : Form
 			}
 		}
 		nfi.ShowBalloonTip(1000, "SMART MBUS HYBRID - POLLING", tipText, ToolTipIcon.Info);
-
-		var packet1 = "68 c9 c9 68 08 12 72 18 99 64 80 2d 2c 35 0a 20 10 00 00 04 fb 00 07 40 00 00 04 ff 07 cc 6e 01 00 04 ff 08 a8 a1 01 00 04 16 fd d7 0f 00 84 40 14 00 00 00 00 84 80 40 14 00 00 00 00 04 22 48 72 00 00 34 22 35 06 00 00 02 59 e2 02 02 5d e3 03 02 61 ff fe 04 2e 00 00 00 00 14 2e 6d ff ff ff 04 3c 00 00 00 00 14 3c 7c 11 00 00 04 ff 22 00 01 00 00 04 6d 3a 31 f5 2c 44 fb 00 84 3e 00 00 44 ff 07 be 6b 01 00 44 ff 08 4d 9d 01 00 44 16 71 af 0f 00 c4 40 14 00 00 00 00 c4 80 40 14 00 00 00 00 54 2e 1f ff ff ff 54 3c 08 14 00 00 42 6c e1 2c 02 ff 1a 03 1b 0c 78 18 99 64 80 04 ff 16 e6 84 1e 00 04 ff 17 c1 d5 b4 00 a9 16"
-			.HexToBytes()
-			.ToFrame();
-            //.ToPacket();
-
-
     }
 
 	private void OnProcessExit(object sender, EventArgs e)
