@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "CYlR7Cp11yHEHsPPvriQVydDz7w5qxJS9JWIudlsYIVtL6kcaS+BhiMeNXbxm854sSXoNcKDv+jquFo7PQ4yQA==",
+  "dgSpecHash": "DoND6f6y4Ew7mlEyzqVmwpGcK6KNE81bQ8FFzEH0ZzytyShiAZgfigntrT2RX1O5SdNmN901s92v0LnJ8j016w==",
   "success": true,
   "projectFilePath": "D:\\DCU\\MBUSDCU.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.3\\microsoft.netframework.referenceassemblies.1.0.3.nupkg.sha512",
-    "C:\\Users\\user\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net452\\1.0.3\\microsoft.netframework.referenceassemblies.net452.1.0.3.nupkg.sha512"
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net461\\1.0.3\\microsoft.netframework.referenceassemblies.net461.1.0.3.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\valley.net.bindings\\1.0.2\\valley.net.bindings.1.0.2.nupkg.sha512"
   ],
   "logs": []
 }
